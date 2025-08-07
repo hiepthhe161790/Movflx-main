@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL;
 import React, { useEffect, useState } from 'react';
 import MovieCard from '../Components/MovieCard';
 import NoData from '../Components/Search/noData';
@@ -18,18 +19,18 @@ const Movies = ({ setWatchList, watchList }) => {
     const [showDates, setShowDates] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/types')
+        fetch(`${API_URL}/api/types`)
             .then(res => res.json())
             .then(data => setTypes([{ typeId: 0, typeName: 'All' }, ...data]));
         // Lấy danh sách ngày chiếu
-        fetch('http://localhost:8080/api/show-dates')
+        fetch(`${API_URL}/api/show-dates`)
             .then(res => res.json())
             .then(data => setShowDates(data));
     }, []);
 
     useEffect(() => {
         if (dateFilterActive && showDate) {
-            fetch(`http://localhost:8080/api/movies/showtimes-by-date?date=${showDate}`)
+            fetch(`${API_URL}/api/movies/showtimes-by-date?date=${showDate}`)
                 .then(res => res.json())
                 .then(data => {
                     setAllMovies(data.Search || []);
@@ -38,8 +39,8 @@ const Movies = ({ setWatchList, watchList }) => {
         } else {
             const url =
                 selectedType === 'All'
-                    ? `http://localhost:8080/api/movies/search`
-                    : `http://localhost:8080/api/movies/search?type=${selectedType}`;
+                    ? `${API_URL}/api/movies/search`
+                    : `${API_URL}/api/movies/search?type=${selectedType}`;
             fetch(url)
                 .then(res => res.json())
                 .then(data => {

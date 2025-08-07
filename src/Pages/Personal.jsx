@@ -9,7 +9,7 @@ function Personal({ user }) {
   useEffect(() => {
     if (user) {
       // Lấy điểm từ API
-      axios.get(`http://localhost:8080/api/member/points/${user.accountId}`)
+      axios.get(`${process.env.REACT_APP_API_URL}/api/member/points/${user.accountId}`)
         .then(response => {
           setPoints(response.data.points);
         })

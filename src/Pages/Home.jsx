@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+const API_URL = process.env.REACT_APP_API_URL;
 import HomeBanner from '../Components/HomeBanner';
 import Subscribe from '../Components/Subscribe';
 import TopMovies from '../Components/TopMovies';
@@ -11,7 +12,7 @@ const Home = ({ setWatchList, watchList }) => {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    fetch(`http://localhost:8080/api/movies/search?type=${filterCtg}`, {
+    fetch(`${API_URL}/api/movies/search?type=${filterCtg}`, {
       signal: signal
     })
       .then(res => res.json())

@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL;
 import React, { useState, useEffect } from "react";
 import { FiPlusCircle, FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
@@ -9,7 +10,7 @@ const CinemaRoomDashboard = () => {
   const [currentRoom, setCurrentRoom] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/cinema-rooms")
+    fetch(`${API_URL}/api/cinema-rooms`)
       .then(res => res.json())
       .then(data => setRooms(data))
       .catch(err => console.error(err));
@@ -20,7 +21,7 @@ const CinemaRoomDashboard = () => {
   );
 
   const handleAddRoom = (formData) => {
-    fetch("http://localhost:8080/api/cinema-rooms", {
+    fetch(`${API_URL}/api/cinema-rooms`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -36,7 +37,7 @@ const CinemaRoomDashboard = () => {
       .then(() => {
         toast.success("Thêm phòng chiếu thành công!");
         setIsModalOpen(false);
-        return fetch("http://localhost:8080/api/cinema-rooms")
+        return fetch(`${API_URL}/api/cinema-rooms`)
           .then(res => res.json())
           .then(data => setRooms(data));
       })
@@ -44,7 +45,7 @@ const CinemaRoomDashboard = () => {
   };
 
   const handleEditRoom = (formData) => {
-    fetch(`http://localhost:8080/api/cinema-rooms/${formData.cinemaRoomId}`, {
+    fetch(`${API_URL}/api/cinema-rooms/${formData.cinemaRoomId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -60,7 +61,7 @@ const CinemaRoomDashboard = () => {
       .then(() => {
         toast.success("Cập nhật phòng chiếu thành công!");
         setIsModalOpen(false);
-        return fetch("http://localhost:8080/api/cinema-rooms")
+        return fetch(`${API_URL}/api/cinema-rooms`)
           .then(res => res.json())
           .then(data => setRooms(data));
       })
@@ -68,7 +69,7 @@ const CinemaRoomDashboard = () => {
   };
 
   const handleDeleteRoom = (id) => {
-    fetch(`http://localhost:8080/api/cinema-rooms/${id}`, {
+    fetch(`${API_URL}/api/cinema-rooms/${id}`, {
       method: "DELETE"
     })
       .then(res => {

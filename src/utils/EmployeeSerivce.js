@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // Define the base URL for your Spring Boot backend API
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
+const API_URL = process.env.REACT_APP_API_URL;
+const EMPLOYEE_API_BASE_URL = `${API_URL}/api/v1/employees`;
 
 class EmployeeService {
 

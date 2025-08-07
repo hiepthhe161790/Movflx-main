@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-const API_BASE = "http://localhost:8080/api";
+const API_BASE = `${process.env.REACT_APP_API_URL}/api`;
 
 export default function MovieScheduleManager() {
     const navigate = useNavigate();

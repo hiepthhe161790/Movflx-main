@@ -15,7 +15,7 @@ const SeatMap = () => {
 
   useEffect(() => {
     // Lấy thông tin ghế
-    fetch(`http://localhost:8080/api/booking/seat-status?movieId=${movieId}&showDateId=${showDateId}&scheduleId=${scheduleId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/booking/seat-status?movieId=${movieId}&showDateId=${showDateId}&scheduleId=${scheduleId}`)
       .then(res => res.json())
       .then(data => {
         const rows = {};
@@ -32,14 +32,14 @@ const SeatMap = () => {
       });
 
     // Lấy thông tin phim
-    fetch(`http://localhost:8080/api/movies/${movieId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/movies/${movieId}`)
       .then(res => res.json())
       .then(data => {
         setMovieName(data.movieNameEnglish || data.movieNameVn || "Unknown Movie");
       });
 
     // Lấy thông tin lịch chiếu
-   fetch(`http://localhost:8080/api/booking/showtimes/${movieId}`)
+   fetch(`${process.env.REACT_APP_API_URL}/api/booking/showtimes/${movieId}`)
     .then(res => res.json())
     .then(data => {
       // Tìm showDate object theo showDateId từ params

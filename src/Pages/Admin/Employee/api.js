@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_URL = process.env.REACT_APP_API_URL;
+const API_BASE_URL = `${API_URL}/api`;
 
 const handleResponse = async (res) => {
     if (res.ok) {

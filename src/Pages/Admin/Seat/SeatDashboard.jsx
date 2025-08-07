@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaCouch, FaPlusCircle, FaEdit } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-const API_BASE = "http://localhost:8080/api";
+const API_BASE = `${process.env.REACT_APP_API_URL}/api`;
 
 const SeatDashboard = () => {
     const { cinemaRoomId } = useParams();

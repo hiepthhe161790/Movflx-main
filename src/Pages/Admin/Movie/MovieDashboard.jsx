@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL;
 import React, { useState, useEffect, useMemo } from "react";
 import { FiPlusCircle, FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
@@ -47,7 +48,7 @@ const MovieDashboard = () => {
     const [selectedType, setSelectedType] = useState("All");
     const navigate = useNavigate();
     useEffect(() => {
-        fetch("http://localhost:8080/api/movies")
+        fetch(`${API_URL}/api/movies`)
             .then(res => res.json())
             .then(data => {
                 // Map backend fields to frontend fields
@@ -73,7 +74,7 @@ const MovieDashboard = () => {
             .catch(err => console.error(err));
     }, []);
     useEffect(() => {
-        fetch("http://localhost:8080/api/cinema-rooms")
+        fetch(`${API_URL}/api/cinema-rooms`)
             .then(res => res.json())
             .then(data => {
                 // Map backend fields to frontend fields
@@ -89,7 +90,7 @@ const MovieDashboard = () => {
     }, []);
     // const movieTypes = ["All", "Action", "Drama", "Comedy", "Horror", "Romance"];
     useEffect(() => {
-        fetch("http://localhost:8080/api/types")
+        fetch(`${API_URL}/api/types`)
             .then(res => res.json())
             .then(data => {
                 // Lưu cả object type
@@ -134,7 +135,7 @@ const MovieDashboard = () => {
             smallImage: formData.image || null,
             types: formData.types
         };
-        fetch("http://localhost:8080/api/movies", {
+        fetch(`${API_URL}/api/movies`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(movieData)
@@ -147,7 +148,7 @@ const MovieDashboard = () => {
                 toast.success("Thêm phim thành công!");
                 setIsModalOpen(false);
                 // Reload movies to get correct mapping
-                return fetch("http://localhost:8080/api/movies")
+                return fetch(`${API_URL}/api/movies`)
                     .then(res => res.json())
                     .then(data => {
                         const mapped = data.map(movie => ({
@@ -191,7 +192,7 @@ const MovieDashboard = () => {
             smallImage: formData.image || null,
             types: formData.types
         };
-        fetch(`http://localhost:8080/api/movies/${formData.movieId}`, {
+        fetch(`${API_URL}/api/movies/${formData.movieId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(movieData)
@@ -204,7 +205,7 @@ const MovieDashboard = () => {
                 toast.success("Cập nhật phim thành công!");
                 setIsModalOpen(false);
                 // Reload movies to get correct mapping
-                return fetch("http://localhost:8080/api/movies")
+                return fetch(`${API_URL}/api/movies`)
                     .then(res => res.json())
                     .then(data => {
                         const mapped = data.map(movie => ({
@@ -231,7 +232,7 @@ const MovieDashboard = () => {
     };
 
     const handleDeleteMovie = (id) => {
-        fetch(`http://localhost:8080/api/movies/${id}`, {
+        fetch(`${API_URL}/api/movies/${id}`, {
             method: "DELETE"
         })
             .then(res => {

@@ -18,6 +18,7 @@ import Personal from './Pages/Personal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL;
 import Movies from './Pages/Movies';
 import Showtimes from './Pages/Showtimes';
 import SeatMap from './Pages/SeatMap';
@@ -43,7 +44,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await axios.post('/api/logout');
+      await axios.post(`${API_URL}/api/logout`);
       toast.success('Logout successful');
     } catch (err) {
       console.error('Logout failed:', err);

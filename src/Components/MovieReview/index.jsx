@@ -36,10 +36,10 @@ const MovieReview = ({ movieId }) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchReviews = () => {
-    fetch(`http://localhost:8080/api/reviews?movieId=${movieId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/reviews?movieId=${movieId}`)
       .then(res => res.json())
       .then(setReviews);
-    fetch(`http://localhost:8080/api/reviews/average?movieId=${movieId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/reviews/average?movieId=${movieId}`)
       .then(res => res.json())
        .then(data => {
         setAverage(data.averageRating || 0);
@@ -56,8 +56,8 @@ const MovieReview = ({ movieId }) => {
   setLoading(true);
 
   const url = editing
-    ? `http://localhost:8080/api/reviews/${editing.reviewId}`
-    : "http://localhost:8080/api/reviews";
+    ? `${process.env.REACT_APP_API_URL}/api/reviews/${editing.reviewId}`
+    : `${process.env.REACT_APP_API_URL}/api/reviews`;
 
   const method = editing ? "PUT" : "POST";
 
@@ -112,7 +112,7 @@ const MovieReview = ({ movieId }) => {
 };
   const handleDelete = (reviewId) => {
     if (!window.confirm("Bạn chắc chắn muốn xóa đánh giá này?")) return;
-    fetch(`http://localhost:8080/api/reviews/${reviewId}`, { method: "DELETE" })
+    fetch(`${process.env.REACT_APP_API_URL}/api/reviews/${reviewId}`, { method: "DELETE" })
       .then(res => {
         if (!res.ok) throw new Error();
         toast.success("Xóa đánh giá thành công");

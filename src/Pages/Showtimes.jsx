@@ -10,7 +10,7 @@ const Showtimes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/booking/showtimes/${movieId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/booking/showtimes/${movieId}`)
       .then(res => res.json())
       .then(data => {
         setShowtimes(data);

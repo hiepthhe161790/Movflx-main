@@ -6,7 +6,7 @@ const TopMovies = ({ filterCtg, setFilterCtg, topMovies, setWatchList, watchList
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/types")
+    fetch(`${process.env.REACT_APP_API_URL}/api/types`)
       .then(res => res.json())
       .then(data => setTypes(data))
       .catch(() => setTypes([]));

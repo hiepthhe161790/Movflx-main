@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+const API_URL = process.env.REACT_APP_API_URL;
 import { useLocation, useNavigate } from "react-router-dom";
 import { FiCheckCircle, FiXCircle } from "react-icons/fi";
 
@@ -19,7 +20,7 @@ const VnpayReturn = () => {
       const bookingInfo = JSON.parse(localStorage.getItem("bookingInfo"));
       const accountId = bookingInfo?.accountId || JSON.parse(localStorage.getItem("user"))?.accountId;
       if (bookingInfo && accountId) {
-        fetch(`http://localhost:8080/api/booking/confirm?accountId=${accountId}`, {
+        fetch(`${API_URL}/api/booking/confirm?accountId=${accountId}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(bookingInfo),
@@ -28,7 +29,7 @@ const VnpayReturn = () => {
           .then(() => {
             // Nếu dùng điểm, gọi API trừ điểm
             if (bookingInfo.useScore > 0) {
-              fetch(`http://localhost:8080/api/member/points/deduct/${accountId}?points=${bookingInfo.useScore}`, {
+              fetch(`${API_URL}/api/member/points/deduct/${accountId}?points=${bookingInfo.useScore}`, {
                 method: "PUT"
               });
             }

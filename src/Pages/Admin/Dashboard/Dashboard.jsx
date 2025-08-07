@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [topMovies, setTopMovies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/report/overview")
+    fetch(`${process.env.REACT_APP_API_URL}/api/report/overview`)
       .then(res => res.json())
       .then(data => {
         setStats(data.stats || []);

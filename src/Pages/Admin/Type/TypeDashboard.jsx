@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+const API_URL = process.env.REACT_APP_API_URL;
 import { FiPlusCircle, FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
 const TypeDashboard = () => {
@@ -9,7 +10,7 @@ const TypeDashboard = () => {
   const [currentType, setCurrentType] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/types")
+    fetch(`${API_URL}/api/types`)
       .then(res => res.json())
       .then(data => setTypes(data))
       .catch(err => console.error(err));
@@ -20,7 +21,7 @@ const TypeDashboard = () => {
   );
 
   const handleAddType = (formData) => {
-    fetch("http://localhost:8080/api/types", {
+    fetch(`${API_URL}/api/types`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ typeName: formData.typeName })
@@ -32,7 +33,7 @@ const TypeDashboard = () => {
       .then(() => {
         toast.success("Thêm loại phim thành công!");
         setIsModalOpen(false);
-        return fetch("http://localhost:8080/api/types")
+        return fetch(`${API_URL}/api/types`)
           .then(res => res.json())
           .then(data => setTypes(data));
       })
@@ -40,7 +41,7 @@ const TypeDashboard = () => {
   };
 
   const handleEditType = (formData) => {
-    fetch(`http://localhost:8080/api/types/${formData.typeId}`, {
+    fetch(`${API_URL}/api/types/${formData.typeId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ typeName: formData.typeName })
@@ -52,7 +53,7 @@ const TypeDashboard = () => {
       .then(() => {
         toast.success("Cập nhật loại phim thành công!");
         setIsModalOpen(false);
-        return fetch("http://localhost:8080/api/types")
+        return fetch(`${API_URL}/api/types`)
           .then(res => res.json())
           .then(data => setTypes(data));
       })
@@ -60,7 +61,7 @@ const TypeDashboard = () => {
   };
 
   const handleDeleteType = (id) => {
-    fetch(`http://localhost:8080/api/types/${id}`, {
+    fetch(`${API_URL}/api/types/${id}`, {
       method: "DELETE"
     })
       .then(res => {

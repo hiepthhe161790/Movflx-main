@@ -25,7 +25,7 @@ const ConfirmBooking = () => {
   // Lấy điểm từ API
   useEffect(() => {
     if (accountId) {
-      fetch(`http://localhost:8080/api/member/points/${accountId}`)
+      fetch(`${process.env.REACT_APP_API_URL}/api/member/points/${accountId}`)
         .then(res => res.json())
         .then(data => setPoints(data.points || 0));
     }
@@ -58,7 +58,7 @@ const ConfirmBooking = () => {
   const handleConfirm = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8080/api/booking/payment-link", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/booking/payment-link`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -12,7 +12,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    fetch(`http://localhost:8080/api/movies/${id}`, { signal })
+    fetch(`${process.env.REACT_APP_API_URL}/api/movies/${id}`, { signal })
       .then((res) => res.json())
       .then((data) => {
         setMovie(data);

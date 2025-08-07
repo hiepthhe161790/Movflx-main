@@ -6,7 +6,7 @@ const NowShowingMovies = ({ setWatchList, watchList }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/movies/now-showing")
+    fetch(`${process.env.REACT_APP_API_URL}/api/movies/now-showing`)
       .then(res => res.json())
       .then(data => setMovies(data.Search || data || []));
   }, []);

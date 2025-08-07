@@ -18,7 +18,7 @@ const BookingHistory = () => {
 
   useEffect(() => {
     if (!accountId) return;
-    fetch(`http://localhost:8080/api/booking/history?accountId=${accountId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/booking/history?accountId=${accountId}`)
       .then(res => res.json())
       .then(data => {
         setHistory((data || []).reverse());
@@ -41,7 +41,7 @@ const BookingHistory = () => {
   const handleShowTicket = (invoiceId) => {
     setTicketLoading(true);
     setShowModal(true);
-    fetch(`http://localhost:8080/api/booking/ticket/${invoiceId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/booking/ticket/${invoiceId}`)
       .then(res => res.json())
       .then(data => {
         setTicket(data);

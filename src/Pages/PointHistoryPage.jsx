@@ -15,7 +15,7 @@ const PointHistoryPage = () => {
     useEffect(() => {
         if (!accountId) return setLoading(false);
         axios
-            .get(`http://localhost:8080/api/member/points/history/${accountId}`)
+            .get(`${process.env.REACT_APP_API_URL}/api/member/points/history/${accountId}`)
             .then((res) => {
                 setHistory(res.data);
                 setLoading(false);
