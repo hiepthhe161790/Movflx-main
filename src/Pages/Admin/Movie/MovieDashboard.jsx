@@ -1,9 +1,10 @@
-const API_URL = process.env.REACT_APP_API_URL;
 import React, { useState, useEffect, useMemo } from "react";
 import { FiPlusCircle, FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { FiCalendar } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+
+const API_URL = process.env.REACT_APP_API_URL;
 const MovieDashboard = () => {
 
     const [movies, setMovies] = useState([

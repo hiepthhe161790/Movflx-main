@@ -18,7 +18,6 @@ import Personal from './Pages/Personal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-const API_URL = process.env.REACT_APP_API_URL;
 import Movies from './Pages/Movies';
 import Showtimes from './Pages/Showtimes';
 import SeatMap from './Pages/SeatMap';
@@ -32,6 +31,8 @@ import EmployeeLayout from './Layouts/EmployeeLayout';
 import AdminLayout from './Layouts/AdminLayout';
 import VnpayReturn from './Pages/VnpayReturn';
 import PointHistoryPage from './Pages/PointHistoryPage';
+
+const API_URL = process.env.REACT_APP_API_URL;
 function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);

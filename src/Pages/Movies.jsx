@@ -1,10 +1,11 @@
-const API_URL = process.env.REACT_APP_API_URL;
 import React, { useEffect, useState } from 'react';
 import MovieCard from '../Components/MovieCard';
 import NoData from '../Components/Search/noData';
 import Subscribe from '../Components/Subscribe';
 import Pagination from '../Components/Pagination';
 import "../Components/TopMovies/style.css";
+
+const API_URL = process.env.REACT_APP_API_URL;
 const MOVIES_PER_PAGE = 6;
 
 const Movies = ({ setWatchList, watchList }) => {

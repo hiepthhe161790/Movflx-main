@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-const API_URL = process.env.REACT_APP_API_URL;
 import { FiPlusCircle, FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
+
+const API_URL = process.env.REACT_APP_API_URL;
 const TypeDashboard = () => {
   const [types, setTypes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");

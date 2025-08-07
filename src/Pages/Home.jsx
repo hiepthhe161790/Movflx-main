@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-const API_URL = process.env.REACT_APP_API_URL;
 import HomeBanner from '../Components/HomeBanner';
 import Subscribe from '../Components/Subscribe';
 import TopMovies from '../Components/TopMovies';
 import NowShowingMovies from '../Components/MovieSection/NowShowingMovies';
 import ComingSoonMovies from '../Components/MovieSection/ComingSoonMovies';
+
+const API_URL = process.env.REACT_APP_API_URL;
 const Home = ({ setWatchList, watchList }) => {
   const [filterCtg, setFilterCtg] = useState('Action');
   const [topMovies, setTopMovies] = useState([]);

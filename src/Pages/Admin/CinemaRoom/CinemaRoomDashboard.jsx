@@ -1,7 +1,8 @@
-const API_URL = process.env.REACT_APP_API_URL;
 import React, { useState, useEffect } from "react";
 import { FiPlusCircle, FiEdit2, FiTrash2, FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
+
+const API_URL = process.env.REACT_APP_API_URL;
 const CinemaRoomDashboard = () => {
   const [rooms, setRooms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
